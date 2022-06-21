@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import com.juvigaf.myapplication.UI.LoginFragment;
+import com.juvigaf.myapplication.UI.login.LoginFragment;
 
 public class LandingActivity extends AppCompatActivity {
 
