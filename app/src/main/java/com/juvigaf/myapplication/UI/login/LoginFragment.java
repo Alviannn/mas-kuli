@@ -102,13 +102,13 @@ public class LoginFragment extends Fragment {
                                     String phone = snapshot.child("phone").getValue(String.class);
                                     Integer role = snapshot.child("role").getValue(Integer.class);
 
-                                    User newUser = new User(username, email, password, phone, role);
+                                    User newUser = new User(username, name, email, password, phone, role);
 
                                     //get orders data
-                                    databaseReference.child("orders").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            for(int i = 0; i < orderCount; i++){
+                                    for(int i = 0; i < orderCount; i++){
+                                        databaseReference.child("orders").child(String.valueOf(i)).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 String userId = snapshot.child("user_id").getValue(String.class);
                                                 if(userId.equals(username)){
                                                     Integer money = snapshot.child("money").getValue(Integer.class);
@@ -119,19 +119,17 @@ public class LoginFragment extends Fragment {
                                                     newUser.getOrders().add(newOrder);
                                                 }
                                             }
-                                            currentUser = newUser;
 
-                                            //to Main Activity
-                                            Intent toMainActivity = new Intent(getContext(), MainActivity.class);
-                                            getContext().startActivity(toMainActivity);
-                                        }
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
 
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-
+                                            }
+                                        });
+                                    }
+                                    currentUser = newUser;
+                                    //to Main Activity
+                                    Intent toMainActivity = new Intent(getContext(), MainActivity.class);
+                                    getContext().startActivity(toMainActivity);
                                 }
 
                                 @Override

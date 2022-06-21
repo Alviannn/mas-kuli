@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                                 String phone = snapshot.child("phone").getValue(String.class);
                                 Integer role = snapshot.child("role").getValue(Integer.class);
                                 String password = snapshot.child("password").getValue(String.class);
-                                User newUser = new User(username, email, password, phone, role);
+                                User newUser = new User(username, name, email, password, phone, role);
                                 users.add(newUser);
                             }
 
@@ -88,23 +88,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.mainContainer, new MainFragment());
+        fragmentManager.beginTransaction().replace(R.id.mainContainer, new MainFragment()).commit();
 
     }
 
     public void toHome(View view) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.mainContainer, new MainFragment());
+        fragmentManager.beginTransaction().replace(R.id.mainContainer, new MainFragment()).commit();
     }
 
     public void toSearch(View view) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.mainContainer, new SearchFragment());
+        fragmentManager.beginTransaction().replace(R.id.mainContainer, new SearchFragment()).commit();
     }
 
     public void toTransaction(View view) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.mainContainer, new TransactionFragment());
+        fragmentManager.beginTransaction().replace(R.id.mainContainer, new TransactionFragment()).commit();
     }
 
     public void toProfile(View view) {

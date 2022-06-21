@@ -6,13 +6,15 @@ import java.util.List;
 public class User {
 
     private String username;
+    private String name;
     private String email;
     private String password;
     private String phone;
     private Integer role;
     private List<Order>orders = new ArrayList<>();
 
-    public User(String username, String email, String password, String phone, Integer role) {
+    public User(String username, String name, String email, String password, String phone, Integer role) {
+        this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -66,5 +68,13 @@ public class User {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
