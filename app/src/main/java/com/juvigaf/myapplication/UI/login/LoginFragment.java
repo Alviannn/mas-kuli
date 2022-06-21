@@ -81,7 +81,7 @@ public class LoginFragment extends Fragment {
             String username = usernameText.getText().toString().trim();
             String password = passwordText.getText().toString().trim();
 
-            //cek username and password
+            //cek username and password (async) so place logic in function onDataChange
             databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {

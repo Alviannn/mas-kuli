@@ -4,10 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import com.juvigaf.myapplication.UI.SearchFragment;
+import com.juvigaf.myapplication.UI.search.SearchFragment;
 import com.juvigaf.myapplication.UI.main.MainFragment;
 import com.juvigaf.myapplication.UI.profile.ProfileFragment;
 import com.juvigaf.myapplication.UI.transaction.TransactionFragment;
