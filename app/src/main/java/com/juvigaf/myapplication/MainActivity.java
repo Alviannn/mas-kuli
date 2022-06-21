@@ -31,62 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //get order count
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                orderCount = snapshot.child("orderCount").getValue(Integer.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //get kuli member
-        databaseReference.child("Kulimember").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot data : snapshot.getChildren()){
-                    //dapat data ada berapa user dalam team kuli
-                    Integer teamCount = data.child("teamCount").getValue(Integer.class);
-                    String teamId = data.child("team_id").getValue(String.class);
-                    Double rating = data.child("rating").getValue(Double.class);
-                    List<User> users = new ArrayList<>();
-                    for(int i = 0; i < teamCount; i++){
-                        //ambil data team kuli
-                        String username = snapshot.child(String.valueOf(i)).getValue(String.class);
-
-                        databaseReference.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                String email = snapshot.child("email").getValue(String.class);
-                                String name = snapshot.child("name").getValue(String.class);
-                                String phone = snapshot.child("phone").getValue(String.class);
-                                Integer role = snapshot.child("role").getValue(Integer.class);
-                                String password = snapshot.child("password").getValue(String.class);
-                                User newUser = new User(username, name, email, password, phone, role);
-                                users.add(newUser);
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-                    }
-                    KuliMember newKuliMember = new KuliMember(teamId, users, rating);
-                    teams.put(teamId, newKuliMember);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.mainContainer, new MainFragment()).commit();
 
