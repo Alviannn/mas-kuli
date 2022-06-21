@@ -1,5 +1,8 @@
 package com.juvigaf.myapplication.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
     private String username;
@@ -7,6 +10,7 @@ public class User {
     private String password;
     private String phone;
     private Integer role;
+    private List<Order>orders = new ArrayList<>();
 
     public User(String username, String email, String password, String phone, Integer role) {
         this.username = username;
@@ -54,5 +58,13 @@ public class User {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

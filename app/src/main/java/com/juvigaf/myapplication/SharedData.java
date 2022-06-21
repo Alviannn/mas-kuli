@@ -12,5 +12,6 @@ public class SharedData {
     public static User currentUser;
     public static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://maskuliapp-default-rtdb.firebaseio.com/");
     public static Map<String, KuliMember>teams;
+    public static Integer orderCount;
 
 }

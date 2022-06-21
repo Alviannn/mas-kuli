@@ -1,6 +1,8 @@
 package com.juvigaf.myapplication.UI.login;
 
+import static com.juvigaf.myapplication.SharedData.currentUser;
 import static com.juvigaf.myapplication.SharedData.databaseReference;
+import static com.juvigaf.myapplication.SharedData.orderCount;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.juvigaf.myapplication.MainActivity;
 import com.juvigaf.myapplication.R;
+import com.juvigaf.myapplication.models.Order;
+import com.juvigaf.myapplication.models.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -89,9 +93,52 @@ public class LoginFragment extends Fragment {
                     if(snapshot.hasChild(username)){
                         String passwordFromDb = snapshot.child(username).child("password").getValue(String.class);
                         if(password.equals(passwordFromDb)){
-                            //Successfully Log In
-                            Intent toMainActivity = new Intent(getContext(), MainActivity.class);
-                            getContext().startActivity(toMainActivity);
+                            //Successfully Log In, get User data before login
+                            databaseReference.child("users").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    String email = snapshot.child("email").getValue(String.class);
+                                    String name = snapshot.child("name").getValue(String.class);
+                                    String phone = snapshot.child("phone").getValue(String.class);
+                                    Integer role = snapshot.child("role").getValue(Integer.class);
+
+                                    User newUser = new User(username, email, password, phone, role);
+
+                                    //get orders data
+                                    databaseReference.child("orders").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            for(int i = 0; i < orderCount; i++){
+                                                String userId = snapshot.child("user_id").getValue(String.class);
+                                                if(userId.equals(username)){
+                                                    Integer money = snapshot.child("money").getValue(Integer.class);
+                                                    String orderDate = snapshot.child("orderDate").getValue(String.class);
+                                                    String teamId = snapshot.child("team_id").getValue(String.class);
+                                                    Integer status = snapshot.child("status").getValue(Integer.class);
+                                                    Order newOrder = new Order(money, orderDate, teamId, userId);
+                                                    newUser.getOrders().add(newOrder);
+                                                }
+                                            }
+                                            currentUser = newUser;
+
+                                            //to Main Activity
+                                            Intent toMainActivity = new Intent(getContext(), MainActivity.class);
+                                            getContext().startActivity(toMainActivity);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
                     }
                 }
