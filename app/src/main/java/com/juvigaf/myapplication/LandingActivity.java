@@ -1,5 +1,6 @@
 package com.juvigaf.myapplication;
 
+import static com.juvigaf.myapplication.SharedData.allKuli;
 import static com.juvigaf.myapplication.SharedData.databaseReference;
 import static com.juvigaf.myapplication.SharedData.orderCount;
 import static com.juvigaf.myapplication.SharedData.teams;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -91,9 +93,18 @@ public class LandingActivity extends AppCompatActivity {
                     int role = data.child("role").getValue(Integer.class);
                     //jika bukan customer (kuli)
                     if(role != 1){
-
+                        String username = data.child("username").getValue(String.class);
+                        String name = data.child("name").getValue(String.class);
+                        String email = data.child("email").getValue(String.class);
+                        String password = data.child("password").getValue(String.class);
+                        String phone = data.child("phone").getValue(String.class);
+                        User newUser = new User(username, name, email, password, phone, role);
+                        allKuli.add(newUser);
                     }
                 }
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.landingContainer, new LoginFragment()).commit();
             }
 
             @Override
@@ -101,8 +112,5 @@ public class LandingActivity extends AppCompatActivity {
 
             }
         });
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.landingContainer, new LoginFragment()).commit();
     }
 }

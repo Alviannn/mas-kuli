@@ -1,5 +1,7 @@
 package com.juvigaf.myapplication.UI.main;
 
+import static com.juvigaf.myapplication.SharedData.allKuli;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.juvigaf.myapplication.R;
 
@@ -58,6 +63,12 @@ public class MainFragment extends Fragment {
         }
     }
 
+    LinearLayout kuliContainer;
+    ImageView buttonLeft, buttonRight;
+    TextView kuliName, kuliRole, kuliRating;
+    int currentKuli = 0;
+    int countKuli = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,8 +76,41 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         //kerjain sini bang buat layoutnya
-        Log.d("test", "onCreateView: test");
+        init(view);
+
+        setData();
+        buttonLeft.setOnClickListener(changeInfoLeft->{
+            if(++currentKuli >= countKuli){
+                currentKuli = 0;
+            }
+            setData();
+        });
+
+        buttonRight.setOnClickListener(changeInfoRight->{
+            if(--currentKuli < 0){
+                currentKuli = countKuli - 1;
+            }
+            setData();
+        });
 
         return view;
+    }
+
+    void setData(){
+        kuliName.setText(allKuli.get(currentKuli).getName());
+        kuliRole.setText("Peran : kuli"); //sementara kuli semua rolenya
+        kuliRating.setText("Rating : 5.0"); //sementari kuli semua rating 5.0
+    }
+
+    void init(View view){
+        kuliContainer = view.findViewById(R.id.kuliContainer);
+        buttonLeft = view.findViewById(R.id.buttonLeft);
+        buttonRight = view.findViewById(R.id.buttonRight);
+
+        kuliName = view.findViewById(R.id.kuliName);
+        kuliRole = view.findViewById(R.id.kuliRole);
+        kuliRating = view.findViewById(R.id.kuliRating);
+
+        countKuli = allKuli.size();
     }
 }
