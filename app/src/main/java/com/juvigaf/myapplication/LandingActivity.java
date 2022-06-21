@@ -5,31 +5,17 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import com.juvigaf.myapplication.UI.LoginFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class LandingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_landing);
 
-        Log.d("test", "MainActivity");
-
-    }
-
-    public void toHome(View view) {
-    }
-
-    public void toSearch(View view) {
-
-    }
-
-    public void toTransaction(View view) {
-    }
-
-    public void toProfile(View view) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.landingContainer, new LoginFragment()).commit();
     }
 }
