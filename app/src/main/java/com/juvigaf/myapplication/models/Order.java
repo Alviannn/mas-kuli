@@ -4,14 +4,16 @@ public class Order {
 
     private Integer money;
     private String orderDate;
-    private String teamId;
+    private int teamId;
     private String userId;
+    private int status;
 
-    public Order(Integer money, String orderDate, String teamId, String userId) {
+    public Order(Integer money, String orderDate, int teamId, String userId) {
         this.money = money;
         this.orderDate = orderDate;
         this.teamId = teamId;
         this.userId = userId;
+        this.status = 0;
     }
 
     public Integer getMoney() {
@@ -30,11 +32,11 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public String getTeamId() {
+    public int getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(String teamId) {
+    public void setTeamId(int teamId) {
         this.teamId = teamId;
     }
 
@@ -44,5 +46,13 @@ public class Order {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

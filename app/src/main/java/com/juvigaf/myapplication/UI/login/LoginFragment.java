@@ -111,11 +111,12 @@ public class LoginFragment extends Fragment {
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 String userId = snapshot.child("user_id").getValue(String.class);
                                                 if(userId.equals(username)){
+                                                    int status = snapshot.child("status").getValue(Integer.class);
                                                     Integer money = snapshot.child("money").getValue(Integer.class);
                                                     String orderDate = snapshot.child("orderDate").getValue(String.class);
-                                                    String teamId = snapshot.child("team_id").getValue(String.class);
-                                                    Integer status = snapshot.child("status").getValue(Integer.class);
+                                                    int teamId = snapshot.child("team_id").getValue(Integer.class);
                                                     Order newOrder = new Order(money, orderDate, teamId, userId);
+                                                    newOrder.setStatus(status);
                                                     newUser.getOrders().add(newOrder);
                                                 }
                                             }

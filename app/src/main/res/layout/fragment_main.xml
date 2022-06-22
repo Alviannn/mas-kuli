@@ -53,6 +53,7 @@
             android:layout_height="182sp"     >
 
             <ImageView
+                android:id="@+id/kuliProfile"
                 android:layout_width="match_parent"
                 android:layout_height="182sp"
                 android:background="@mipmap/ic_launcher"/>

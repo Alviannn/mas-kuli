@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,10 +8,12 @@
     android:orientation="vertical"
     tools:context=".UI.search.SearchFragment">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/headContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/main_color">
+        android:background="@color/main_color"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/search_kuli"
@@ -34,40 +36,79 @@
             android:text="Urutkan berdasarkan:"
             android:textColor="@color/white" />
 
-        <LinearLayout
-            android:id="@+id/sort_layout"
+        <Button
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/sort_by_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/sort_placeholder"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/white"
+            android:text="Rating"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/search_kuli"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="5dp"
+            android:text="Atau atur sesuai budget Anda:"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/minText"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:hint="Rp Min"/>
+
+            <EditText
+                android:id="@+id/maxText"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:hint="Rp Max"/>
 
             <Button
-                android:id="@+id/sort_by_rating"
+                android:layout_marginLeft="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/white"
-                android:text="Rating"
-                android:textColor="@color/black" />
-
-            <Button
-                android:id="@+id/sort_by_review"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Ulasan"
-                android:textColor="@color/black" />
+                android:text="Terapkan"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/gray"
+                android:layout_marginBottom="10sp"/>
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/kuli_card"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sort_layout"
-        android:layout_margin="20dp"/>
+        android:layout_below="@id/headContainer">
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/kuli_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            tools:listitem="@layout/template_kuli" />
+
+    </ScrollView>
+
+</RelativeLayout>
