@@ -124,7 +124,8 @@
         android:layout_height="130sp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20sp">
+        android:layout_marginRight="20sp"
+        android:layout_marginBottom="50sp">
 
         <Button
             android:layout_width="match_parent"

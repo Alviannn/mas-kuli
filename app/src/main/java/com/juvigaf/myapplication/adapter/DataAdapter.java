@@ -4,7 +4,9 @@ import static com.juvigaf.myapplication.SharedData.ALL_KULI;
 import static com.juvigaf.myapplication.SharedData.CART;
 import static com.juvigaf.myapplication.SharedData.ORDER_COUNT;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +35,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if(ALL_KULI.get(position).getProfile() == 0){
@@ -56,8 +59,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             }
             if(checkUnique){
                 CART.add(ALL_KULI.get(position));
+                holder.containerKuli.setBackgroundColor(R.color.container_color_dark);
             }else{
                 CART.remove(idxRemove);
+                holder.containerKuli.setBackgroundColor(R.color.container_color);
             }
         });
     }
