@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".UI.search.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:background="@color/main_color">
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/search_kuli"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@color/white"
+            android:drawableStart="@drawable/search"
+            android:drawableTint="@color/black"
+            android:hint="Daerah"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/sort_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/search_kuli"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="Urutkan berdasarkan:"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/sort_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sort_placeholder"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/sort_by_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/white"
+                android:text="Rating"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/sort_by_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:text="Ulasan"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/kuli_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sort_layout"
+        android:layout_margin="20dp"/>
+
+</LinearLayout>
