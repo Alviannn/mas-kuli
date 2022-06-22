@@ -1,8 +1,8 @@
 package com.juvigaf.myapplication;
 
-import static com.juvigaf.myapplication.SharedData.allKuli;
-import static com.juvigaf.myapplication.SharedData.databaseReference;
-import static com.juvigaf.myapplication.SharedData.orderCount;
+import static com.juvigaf.myapplication.SharedData.ALL_KULI;
+import static com.juvigaf.myapplication.SharedData.DATABASE_REFERENCE;
+import static com.juvigaf.myapplication.SharedData.ORDER_COUNT;
 import static com.juvigaf.myapplication.SharedData.teams;
 
 import androidx.annotation.NonNull;
@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,10 +29,10 @@ public class LandingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landing);
 
         //get order count
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        DATABASE_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                orderCount = snapshot.child("orderCount").getValue(Integer.class);
+                ORDER_COUNT = snapshot.child("orderCount").getValue(Integer.class);
             }
 
             @Override
@@ -43,7 +42,7 @@ public class LandingActivity extends AppCompatActivity {
         });
 
         //get kuli member
-        databaseReference.child("Kulimember").addListenerForSingleValueEvent(new ValueEventListener() {
+        DATABASE_REFERENCE.child("Kulimember").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot data : snapshot.getChildren()){
@@ -56,7 +55,7 @@ public class LandingActivity extends AppCompatActivity {
                         //ambil data team kuli
                         String username = snapshot.child(String.valueOf(i)).getValue(String.class);
 
-                        databaseReference.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                        DATABASE_REFERENCE.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 String email = snapshot.child("email").getValue(String.class);
@@ -85,7 +84,7 @@ public class LandingActivity extends AppCompatActivity {
             }
         });
 
-        databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+        DATABASE_REFERENCE.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot data : snapshot.getChildren()){
@@ -98,8 +97,10 @@ public class LandingActivity extends AppCompatActivity {
                         String email = data.child("email").getValue(String.class);
                         String password = data.child("password").getValue(String.class);
                         String phone = data.child("phone").getValue(String.class);
+                        int profile = data.child("profile").getValue(Integer.class);
                         User newUser = new User(username, name, email, password, phone, role);
-                        allKuli.add(newUser);
+                        newUser.setProfile(profile);
+                        ALL_KULI.add(newUser);
                     }
                 }
 

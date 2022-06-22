@@ -1,8 +1,8 @@
 package com.juvigaf.myapplication.UI.login;
 
-import static com.juvigaf.myapplication.SharedData.currentUser;
-import static com.juvigaf.myapplication.SharedData.databaseReference;
-import static com.juvigaf.myapplication.SharedData.orderCount;
+import static com.juvigaf.myapplication.SharedData.CURRENT_USER;
+import static com.juvigaf.myapplication.SharedData.DATABASE_REFERENCE;
+import static com.juvigaf.myapplication.SharedData.ORDER_COUNT;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -86,7 +86,7 @@ public class LoginFragment extends Fragment {
             String password = passwordText.getText().toString().trim();
 
             //cek username and password (async) so place logic in function onDataChange
-            databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            DATABASE_REFERENCE.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     //has child usernameText, ex = juantdefrin
@@ -94,7 +94,7 @@ public class LoginFragment extends Fragment {
                         String passwordFromDb = snapshot.child(username).child("password").getValue(String.class);
                         if(password.equals(passwordFromDb)){
                             //Successfully Log In, get User data before login
-                            databaseReference.child("users").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                            DATABASE_REFERENCE.child("users").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     String email = snapshot.child("email").getValue(String.class);
@@ -105,8 +105,8 @@ public class LoginFragment extends Fragment {
                                     User newUser = new User(username, name, email, password, phone, role);
 
                                     //get orders data
-                                    for(int i = 0; i < orderCount; i++){
-                                        databaseReference.child("orders").child(String.valueOf(i)).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    for(int i = 0; i < ORDER_COUNT; i++){
+                                        DATABASE_REFERENCE.child("orders").child(String.valueOf(i)).addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 String userId = snapshot.child("user_id").getValue(String.class);
@@ -127,7 +127,7 @@ public class LoginFragment extends Fragment {
                                             }
                                         });
                                     }
-                                    currentUser = newUser;
+                                    CURRENT_USER = newUser;
                                     //to Main Activity
                                     Intent toMainActivity = new Intent(getContext(), MainActivity.class);
                                     getContext().startActivity(toMainActivity);

@@ -19,7 +19,8 @@
         android:text="@string/mas_kuli"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
     <View
         android:layout_marginTop="5sp"
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content"
         android:text="@string/kuli_terbaik_di_sekitar_kamu"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="16sp"/>
 
     <LinearLayout
@@ -55,8 +57,7 @@
             <ImageView
                 android:id="@+id/kuliProfile"
                 android:layout_width="match_parent"
-                android:layout_height="182sp"
-                android:background="@mipmap/ic_launcher"/>
+                android:layout_height="182sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,13 +111,15 @@
                 android:id="@+id/kuliRole"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Peran : peran"/>
+                android:text="Peran : peran"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/kuliRating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rating 4.8"/>
+                android:text="Rating 4.8"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
 

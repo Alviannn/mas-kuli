@@ -1,5 +1,8 @@
 package com.juvigaf.myapplication.models;
 
+import android.net.Uri;
+
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,8 @@ public class User {
     private String phone;
     private Integer role;
     private List<Order>orders = new ArrayList<>();
+    private int profile;
+    private Uri uri;
 
     public User(String username, String name, String email, String password, String phone, Integer role) {
         this.name = name;
@@ -20,6 +25,7 @@ public class User {
         this.password = password;
         this.phone = phone;
         this.role = role;
+        this.profile = 0;
     }
 
     public String getUsername() {
@@ -76,5 +82,21 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getProfile() {
+        return profile;
+    }
+
+    public void setProfile(int profile) {
+        this.profile = profile;
+    }
+
+    public Uri getUri() {
+        return uri;
+    }
+
+    public void setUri(Uri uri) {
+        this.uri = uri;
     }
 }

@@ -1,12 +1,11 @@
 package com.juvigaf.myapplication.UI.main;
 
-import static com.juvigaf.myapplication.SharedData.allKuli;
+import static com.juvigaf.myapplication.SharedData.ALL_KULI;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.juvigaf.myapplication.R;
 
 /**
@@ -64,7 +64,7 @@ public class MainFragment extends Fragment {
     }
 
     LinearLayout kuliContainer;
-    ImageView buttonLeft, buttonRight;
+    ImageView buttonLeft, buttonRight, kuliProfile;
     TextView kuliName, kuliRole, kuliRating;
     int currentKuli = 0;
     int countKuli = 0;
@@ -78,26 +78,31 @@ public class MainFragment extends Fragment {
         //kerjain sini bang buat layoutnya
         init(view);
 
-        setData();
+        setData(view);
         buttonLeft.setOnClickListener(changeInfoLeft->{
             if(++currentKuli >= countKuli){
                 currentKuli = 0;
             }
-            setData();
+            setData(view);
         });
 
         buttonRight.setOnClickListener(changeInfoRight->{
             if(--currentKuli < 0){
                 currentKuli = countKuli - 1;
             }
-            setData();
+            setData(view);
         });
 
         return view;
     }
 
-    void setData(){
-        kuliName.setText(allKuli.get(currentKuli).getName());
+    void setData(View view){
+        if(ALL_KULI.get(currentKuli).getProfile() == 0){
+            Glide.with(view)
+                    .load("https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png")
+                    .into(kuliProfile);
+        }
+        kuliName.setText(ALL_KULI.get(currentKuli).getName());
         kuliRole.setText("Peran : kuli"); //sementara kuli semua rolenya
         kuliRating.setText("Rating : 5.0"); //sementari kuli semua rating 5.0
     }
@@ -107,10 +112,11 @@ public class MainFragment extends Fragment {
         buttonLeft = view.findViewById(R.id.buttonLeft);
         buttonRight = view.findViewById(R.id.buttonRight);
 
+        kuliProfile = view.findViewById(R.id.kuliProfile);
         kuliName = view.findViewById(R.id.kuliName);
         kuliRole = view.findViewById(R.id.kuliRole);
         kuliRating = view.findViewById(R.id.kuliRating);
 
-        countKuli = allKuli.size();
+        countKuli = ALL_KULI.size();
     }
 }

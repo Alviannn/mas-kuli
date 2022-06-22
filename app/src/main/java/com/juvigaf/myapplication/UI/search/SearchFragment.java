@@ -3,12 +3,15 @@ package com.juvigaf.myapplication.UI.search;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.juvigaf.myapplication.R;
+import com.juvigaf.myapplication.adapter.DataAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,12 +60,26 @@ public class SearchFragment extends Fragment {
         }
     }
 
+    RecyclerView kuli_card;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        init(view);
+        DataAdapter dataAdapter = new DataAdapter(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        kuli_card.setAdapter(dataAdapter);
+        kuli_card.setLayoutManager(linearLayoutManager);
+
+        dataAdapter.notifyDataSetChanged();
+
         return view;
+    }
+
+    private void init(View view){
+        kuli_card = view.findViewById(R.id.kuli_card);
     }
 }

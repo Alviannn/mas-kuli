@@ -1,6 +1,6 @@
 package com.juvigaf.myapplication.UI.profile;
 
-import static com.juvigaf.myapplication.SharedData.currentUser;
+import static com.juvigaf.myapplication.SharedData.CURRENT_USER;
 
 import android.os.Bundle;
 
@@ -69,12 +69,12 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         init(view);
 
-        int length = currentUser.getPassword().length();
+        int length = CURRENT_USER.getPassword().length();
         String password = "";
         for(int i = 0; i < length; i++) password += "*";
-        userEmail.setText(currentUser.getEmail());
+        userEmail.setText(CURRENT_USER.getEmail());
         userPassword.setText(password);
-        userPhone.setText(currentUser.getPhone());
+        userPhone.setText(CURRENT_USER.getPhone());
 
         return view;
     }

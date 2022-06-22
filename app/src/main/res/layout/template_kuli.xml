@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="250sp"
     android:background="@color/container_color"
-    android:layout_margin="10sp">
+    android:layout_margin="10sp"
+    android:clickable="true"
+    android:id="@+id/containerKuli">
 
     <ImageView
         android:id="@+id/kuliProfile"
         android:layout_width="match_parent"
         android:layout_height="180sp"
-        android:background="@mipmap/ic_launcher"
         android:scaleType="centerCrop"/>
 
     <TextView
@@ -21,20 +22,25 @@
         android:layout_height="wrap_content"
         android:text="kuliName"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <TextView
+        android:id="@+id/kuliRole"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/peran_peran"/>
+        android:text="@string/peran_peran"
+        android:textColor="@color/black"/>
 
     <TextView
+        android:id="@+id/kuliRating"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rating: 5.0"/>
+        android:text="Rating: 5.0"
+        android:textColor="@color/black"/>
 
 </LinearLayout>
