@@ -1,5 +1,7 @@
 package com.juvigaf.myapplication.UI.profile;
 
+import static com.juvigaf.myapplication.SharedData.currentUser;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.juvigaf.myapplication.R;
 
@@ -57,11 +60,28 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    TextView userEmail, userPassword, userPhone;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        init(view);
+
+        int length = currentUser.getPassword().length();
+        String password = "";
+        for(int i = 0; i < length; i++) password += "*";
+        userEmail.setText(currentUser.getEmail());
+        userPassword.setText(password);
+        userPhone.setText(currentUser.getPhone());
+
         return view;
+    }
+
+    private void init(View view){
+        userEmail = view.findViewById(R.id.userEmail);
+        userPassword = view.findViewById(R.id.userPassword);
+        userPhone = view.findViewById(R.id.userPhone);
     }
 }
