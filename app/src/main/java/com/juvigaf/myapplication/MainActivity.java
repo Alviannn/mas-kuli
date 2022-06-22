@@ -53,6 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void toProfile(View view) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.mainContainer, new ProfileFragment());
+        fragmentManager.beginTransaction().replace(R.id.mainContainer, new ProfileFragment()).commit();
     }
 }
