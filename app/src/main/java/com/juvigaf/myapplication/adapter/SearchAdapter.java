@@ -2,16 +2,13 @@ package com.juvigaf.myapplication.adapter;
 
 import static com.juvigaf.myapplication.SharedData.ALL_KULI;
 import static com.juvigaf.myapplication.SharedData.CART;
-import static com.juvigaf.myapplication.SharedData.ORDER_COUNT;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,11 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.juvigaf.myapplication.R;
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
     Context context;
 
-    public DataAdapter(Context context) {
+    public SearchAdapter(Context context) {
         this.context = context;
     }
 

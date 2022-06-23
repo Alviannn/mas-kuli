@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.juvigaf.myapplication.R;
 import com.juvigaf.myapplication.SharedData;
+import com.juvigaf.myapplication.adapter.TransactionAdapter;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.juvigaf.myapplication.R;
 import com.juvigaf.myapplication.SharedData;
-import com.juvigaf.myapplication.adapter.DataAdapter;
+import com.juvigaf.myapplication.adapter.SearchAdapter;
 import com.juvigaf.myapplication.models.User;
 
 import java.util.Collections;
@@ -79,9 +79,9 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         init(view);
-        DataAdapter dataAdapter = new DataAdapter(getContext());
+        SearchAdapter searchAdapter = new SearchAdapter(getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        kuliCardView.setAdapter(dataAdapter);
+        kuliCardView.setAdapter(searchAdapter);
         kuliCardView.setLayoutManager(linearLayoutManager);
 
         sortRatingBtn.setOnClickListener(v ->  {
@@ -92,7 +92,7 @@ public class SearchFragment extends Fragment {
             Comparator<User> ascendingComparator = (a, b) -> b.getRating().compareTo(a.getRating());
             Collections.sort(kuliList, isAscendSort ? ascendingComparator : descendingComparator);
 
-            dataAdapter.notifyDataSetChanged();
+            searchAdapter.notifyDataSetChanged();
         });
 
         return view;
