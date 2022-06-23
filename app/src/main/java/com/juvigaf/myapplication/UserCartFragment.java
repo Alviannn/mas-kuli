@@ -2,6 +2,7 @@ package com.juvigaf.myapplication;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.juvigaf.myapplication.UI.TransactionDetailFragment;
 import com.juvigaf.myapplication.adapter.CartAdapter;
 
 import java.util.Calendar;
@@ -27,7 +30,7 @@ public class UserCartFragment extends Fragment {
     }
 
     private DatePickerDialog datePickerDialog;
-    private Button bDateStart, bDateEnd;
+    private Button bDateStart, bDateEnd, order;
     private int click = 0;
 
     @Override
@@ -40,6 +43,7 @@ public class UserCartFragment extends Fragment {
         initDatePicker();
         bDateStart = view.findViewById(R.id.bDateStart);
         bDateEnd = view.findViewById(R.id.bDateEnd);
+        order = view.findViewById(R.id.order_kuli_btn);
 
         bDateStart.setOnClickListener(openDatePicker->{
             click = 1;
@@ -49,6 +53,11 @@ public class UserCartFragment extends Fragment {
         bDateEnd.setOnClickListener(openDatePicker->{
             click = 2;
             datePickerDialog.show();
+        });
+
+        order.setOnClickListener(toDetail->{
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.mainContainer, new TransactionDetailFragment()).commit();
         });
 
         bDateStart.setText(getTodayDate());
