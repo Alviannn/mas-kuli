@@ -102,6 +102,7 @@ public class MainFragment extends Fragment {
                     .load("https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png")
                     .into(kuliProfile);
         }
+        //setData
         kuliName.setText(ALL_KULI.get(currentKuli).getName());
         kuliRole.setText("Peran : kuli"); //sementara kuli semua rolenya
         kuliRating.setText("Rating : " + String.valueOf(ALL_KULI.get(currentKuli).getRating())); //sementari kuli semua rating 5.0
