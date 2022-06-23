@@ -13,33 +13,31 @@ import com.juvigaf.myapplication.UI.transaction.TransactionFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = this.getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.mainContainer, new MainFragment()).commit();
-
     }
 
     public void toHome(View view) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.mainContainer, new MainFragment()).commit();
     }
 
     public void toSearch(View view) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.mainContainer, new SearchFragment()).commit();
     }
 
     public void toTransaction(View view) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.mainContainer, new TransactionFragment()).commit();
     }
 
     public void toProfile(View view) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.mainContainer, new ProfileFragment()).commit();
     }
+
 }
