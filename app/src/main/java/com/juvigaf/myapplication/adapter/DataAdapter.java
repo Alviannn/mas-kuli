@@ -46,7 +46,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         }
         holder.kuliName.setText(ALL_KULI.get(position).getName());
         holder.kuliRole.setText("Peran : kuli");
-        holder.kuliRating.setText("Rating : 5.0");
+        holder.kuliRating.setText("Rating : " + String.valueOf(ALL_KULI.get(position).getRating()));
         holder.containerKuli.setOnClickListener(addToCart->{
             boolean checkUnique = true;
             int idxRemove = 0;
