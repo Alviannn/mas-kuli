@@ -17,5 +17,6 @@ public class SharedData {
     public static int ORDER_COUNT;
     public static List<User> ALL_KULI = new ArrayList<>();
     public static List<User> CART = new ArrayList<>();
+    public static int day, month, year, hour, minute;
 
 }
