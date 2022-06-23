@@ -8,8 +8,10 @@
 
     <ImageView
         android:id="@+id/statusImage"
-        android:layout_width="90sp"
-        android:layout_height="90sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginStart="10dp"
+        android:layout_gravity="center_vertical"
         android:src="@drawable/ic_baseline_check_circle_24"/>
 
     <LinearLayout
