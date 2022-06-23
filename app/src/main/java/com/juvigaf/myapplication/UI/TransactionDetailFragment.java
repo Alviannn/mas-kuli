@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.button.MaterialButton;
 import com.juvigaf.myapplication.R;
+import com.juvigaf.myapplication.UI.main.MainFragment;
 
 public class TransactionDetailFragment extends Fragment {
 
@@ -27,7 +29,9 @@ public class TransactionDetailFragment extends Fragment {
         MaterialButton purchaseBtn = view.findViewById(R.id.purchase_btn);
         purchaseBtn.setOnClickListener(v -> {
             Toast.makeText(v.getContext(), "Successfully purchased", Toast.LENGTH_SHORT).show();
-            this.getActivity().finish();
+
+            FragmentManager manager = this.getActivity().getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.mainContainer, new MainFragment());
         });
 
         return view;
