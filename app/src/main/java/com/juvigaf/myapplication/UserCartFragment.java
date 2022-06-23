@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.juvigaf.myapplication.UI.TransactionDetailFragment;
+import com.juvigaf.myapplication.UI.transactiondetail.TransactionDetailFragment;
 import com.juvigaf.myapplication.adapter.CartAdapter;
 
 import java.util.Calendar;
