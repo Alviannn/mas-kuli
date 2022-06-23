@@ -90,8 +90,14 @@ public class UserCartFragment extends Fragment {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 String date = makeDateString(day, month, year);
                 if(click == 1){
+                    SharedData.dayStart = day;
+                    SharedData.monthStart = month;
+                    SharedData.yearStart = year;
                     bDateStart.setText(date);
                 }else{
+                    SharedData.dayEnd = day;
+                    SharedData.monthEnd = month;
+                    SharedData.yearEnd = year;
                     bDateEnd.setText(date);
                 }
             }

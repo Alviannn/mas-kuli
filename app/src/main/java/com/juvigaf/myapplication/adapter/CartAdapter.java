@@ -25,6 +25,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     public CartAdapter(Context context) {
         this.context = context;
+        if(CART.size() == 0) return;
     }
 
     @NonNull
