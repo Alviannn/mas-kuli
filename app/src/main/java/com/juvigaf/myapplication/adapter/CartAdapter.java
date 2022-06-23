@@ -58,7 +58,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return ALL_KULI.size();
+        return CART.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
