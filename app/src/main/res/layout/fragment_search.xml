@@ -64,7 +64,6 @@
 
     </ScrollView>
 
-
     <RelativeLayout
         android:layout_width="100sp"
         android:layout_height="100sp"
@@ -74,13 +73,15 @@
         android:layout_marginBottom="50sp">
 
         <Button
+            android:id="@+id/cart_btn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableTop="@drawable/cart"
             android:paddingTop="15dp"
             android:text="Cart"
             android:textStyle="bold"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="20dp"
+            android:onClick="toUserCart" />
 
     </RelativeLayout>
 

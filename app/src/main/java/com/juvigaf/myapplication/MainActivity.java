@@ -40,4 +40,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().replace(R.id.mainContainer, new ProfileFragment()).commit();
     }
 
+    public void toUserCart(View view) {
+        fragmentManager.beginTransaction().replace(R.id.mainContainer, new UserCartFragment()).commit();
+    }
+
 }

@@ -1,15 +1,14 @@
 package com.juvigaf.myapplication.UI.search;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.juvigaf.myapplication.R;
 import com.juvigaf.myapplication.SharedData;
@@ -85,9 +84,7 @@ public class SearchFragment extends Fragment {
         kuliCardView.setAdapter(dataAdapter);
         kuliCardView.setLayoutManager(linearLayoutManager);
 
-        dataAdapter.notifyDataSetChanged();
-
-        sortRatingBtn.setOnClickListener(btn ->  {
+        sortRatingBtn.setOnClickListener(v ->  {
             List<User> kuliList = SharedData.ALL_KULI;
             isAscendSort = !isAscendSort;
 
