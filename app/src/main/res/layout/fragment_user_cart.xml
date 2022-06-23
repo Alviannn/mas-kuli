@@ -26,18 +26,12 @@
         android:layout_marginBottom="20dp"
         android:background="@color/black" />
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/kuli_card"
         android:layout_width="match_parent"
-        android:layout_height="720dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/kuli_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            tools:listitem="@layout/template_kuli" />
-
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        tools:listitem="@layout/template_kuli" />
 
     <Button
         android:id="@+id/order_kuli_btn"
