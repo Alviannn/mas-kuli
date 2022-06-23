@@ -4,21 +4,21 @@ import java.util.List;
 
 public class KuliMember {
 
-    private String teamId;
+    private int teamId;
     private List<User>users;
-    private Double rating;
+    private int count;
 
-    public KuliMember(String teamId, List<User> users, Double rating) {
+    public KuliMember(Integer teamId, List<User> users, int count) {
         this.teamId = teamId;
         this.users = users;
-        this.rating = rating;
+        this.count = count;
     }
 
-    public String getTeamId() {
+    public Integer getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(String teamId) {
+    public void setTeamId(Integer teamId) {
         this.teamId = teamId;
     }
 
@@ -30,11 +30,4 @@ public class KuliMember {
         this.users = users;
     }
 
-    public Double getRating() {
-        return rating;
-    }
-
-    public void setRating(Double rating) {
-        this.rating = rating;
-    }
 }

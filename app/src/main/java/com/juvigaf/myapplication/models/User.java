@@ -17,6 +17,7 @@ public class User {
     private List<Order>orders = new ArrayList<>();
     private int profile;
     private Uri uri;
+    private Double rating;
 
     public User(String username, String name, String email, String password, String phone, Integer role) {
         this.name = name;
