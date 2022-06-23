@@ -104,7 +104,7 @@ public class MainFragment extends Fragment {
         }
         kuliName.setText(ALL_KULI.get(currentKuli).getName());
         kuliRole.setText("Peran : kuli"); //sementara kuli semua rolenya
-        kuliRating.setText("Rating : 5.0"); //sementari kuli semua rating 5.0
+        kuliRating.setText("Rating : " + String.valueOf(ALL_KULI.get(currentKuli).getRating())); //sementari kuli semua rating 5.0
     }
 
     void init(View view){
