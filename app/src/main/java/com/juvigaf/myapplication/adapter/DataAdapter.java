@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -59,10 +60,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             }
             if(checkUnique){
                 CART.add(ALL_KULI.get(position));
-                holder.containerKuli.setBackgroundColor(R.color.container_color_dark);
+                holder.check.setVisibility(View.VISIBLE);
             }else{
                 CART.remove(idxRemove);
-                holder.containerKuli.setBackgroundColor(R.color.container_color);
+                holder.check.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -76,7 +77,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
         ImageView kuliProfile;
         TextView kuliName, kuliRole, kuliRating;
-        LinearLayout containerKuli;
+        RelativeLayout check,containerKuli;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,6 +86,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             kuliRole = itemView.findViewById(R.id.kuliRole);
             kuliRating = itemView.findViewById(R.id.kuliRating);
             containerKuli = itemView.findViewById(R.id.containerKuli);
+            check = itemView.findViewById(R.id.check);
         }
     }
 }
