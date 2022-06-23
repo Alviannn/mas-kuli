@@ -25,7 +25,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     Context context;
 
-    public DataAdapter(Context context){
+    public DataAdapter(Context context) {
         this.context = context;
     }
 
@@ -39,29 +39,30 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if(ALL_KULI.get(position).getProfile() == 0){
+        if (ALL_KULI.get(position).getProfile() == 0) {
             //kalo belum upload profile
             Glide.with(context)
                     .load("https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png")
                     .into(holder.kuliProfile);
         }
+
         holder.kuliName.setText(ALL_KULI.get(position).getName());
         holder.kuliRole.setText("Peran : kuli");
-        holder.kuliRating.setText("Rating : " + String.valueOf(ALL_KULI.get(position).getRating()));
-        holder.containerKuli.setOnClickListener(addToCart->{
+        holder.kuliRating.setText("Rating : " + ALL_KULI.get(position).getRating());
+        holder.containerKuli.setOnClickListener(addToCart -> {
             boolean checkUnique = true;
             int idxRemove = 0;
-            for(int i = 0; i < CART.size(); i++){
-                if(CART.get(i).getUsername().equals(ALL_KULI.get(position).getUsername())){
+            for (int i = 0; i < CART.size(); i++) {
+                if (CART.get(i).getUsername().equals(ALL_KULI.get(position).getUsername())) {
                     checkUnique = false;
                     idxRemove = i;
                     break;
                 }
             }
-            if(checkUnique){
+            if (checkUnique) {
                 CART.add(ALL_KULI.get(position));
                 holder.check.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 CART.remove(idxRemove);
                 holder.check.setVisibility(View.INVISIBLE);
             }
@@ -73,11 +74,11 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         return ALL_KULI.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView kuliProfile;
         TextView kuliName, kuliRole, kuliRating;
-        RelativeLayout check,containerKuli;
+        RelativeLayout check, containerKuli;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
