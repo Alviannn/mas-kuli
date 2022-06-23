@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.juvigaf.myapplication.adapter.CartAdapter;
 
 public class UserCartFragment extends Fragment {
 
@@ -22,17 +25,17 @@ public class UserCartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_cart, container, false);
+        this.init(view);
 
-        init(view);
-//        DataAdapter dataAdapter = new DataAdapter(getContext());
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-//        kuliCardView.setAdapter(dataAdapter);
-//        kuliCardView.setLayoutManager(linearLayoutManager);
+        CartAdapter cartAdapter = new CartAdapter(this.getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        kuliCardView.setAdapter(cartAdapter);
+        kuliCardView.setLayoutManager(linearLayoutManager);
 
         return view;
     }
 
-    private void init(View view){
+    private void init(View view) {
         kuliCardView = view.findViewById(R.id.kuli_card);
     }
 
