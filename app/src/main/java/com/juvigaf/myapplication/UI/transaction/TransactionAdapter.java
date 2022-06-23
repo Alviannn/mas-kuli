@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.juvigaf.myapplication.R;
+import com.juvigaf.myapplication.SharedData;
 import com.juvigaf.myapplication.models.Order;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull TransactionAdapter.ViewHolder holder, int position) {
-        holder.tvName.setText("test");
+        holder.tvName.setText("Maman"); //TODO: nama mandor
         holder.tvPrice.setText(orders.get(position).getMoney().toString());
         holder.tvDate.setText(orders.get(position).getOrderDate());
     }
