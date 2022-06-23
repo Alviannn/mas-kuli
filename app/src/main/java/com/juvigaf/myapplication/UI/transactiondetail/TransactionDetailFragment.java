@@ -1,4 +1,4 @@
-package com.juvigaf.myapplication.UI;
+package com.juvigaf.myapplication.UI.transactiondetail;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
