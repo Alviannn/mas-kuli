@@ -100,6 +100,34 @@ public class LandingActivity extends AppCompatActivity {
                         int profile = data.child("profile").getValue(Integer.class);
                         User newUser = new User(username, name, email, password, phone, role);
                         newUser.setProfile(profile);
+
+                        //ambil data rating dan price
+                        DATABASE_REFERENCE.child("rating").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                newUser.setRating(snapshot.getValue(Double.class));
+
+                                //ambil price
+                                DATABASE_REFERENCE.child("price").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        newUser.setPrice(snapshot.getValue(Integer.class));
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                         ALL_KULI.add(newUser);
                     }
                 }
