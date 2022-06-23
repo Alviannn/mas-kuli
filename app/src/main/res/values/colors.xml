@@ -12,5 +12,6 @@
     <color name="container_color">#FFF6E3</color>
     <color name="container_color_dark">#D8CDB8</color>
     <color name="green_color">#18A326</color>
+    <color name="orange_color">#BD7A16</color>
     <color name="gray">#D8D6D6</color>
 </resources>
