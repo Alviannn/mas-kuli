@@ -9,9 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.juvigaf.myapplication.R;
+import com.juvigaf.myapplication.SharedData;
 import com.juvigaf.myapplication.adapter.DataAdapter;
+import com.juvigaf.myapplication.models.User;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,8 +67,12 @@ public class SearchFragment extends Fragment {
         }
     }
 
-    RecyclerView kuli_card;
+    private RecyclerView kuliCardView;
+    private Button sortRatingBtn;
 
+    private boolean isAscendSort = false;
+
+    @SuppressWarnings("ComparatorCombinators")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,15 +82,28 @@ public class SearchFragment extends Fragment {
         init(view);
         DataAdapter dataAdapter = new DataAdapter(getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        kuli_card.setAdapter(dataAdapter);
-        kuli_card.setLayoutManager(linearLayoutManager);
+        kuliCardView.setAdapter(dataAdapter);
+        kuliCardView.setLayoutManager(linearLayoutManager);
 
         dataAdapter.notifyDataSetChanged();
+
+        sortRatingBtn.setOnClickListener(btn ->  {
+            List<User> kuliList = SharedData.ALL_KULI;
+            isAscendSort = !isAscendSort;
+
+            Comparator<User> descendingComparator = (a, b) -> a.getRating().compareTo(b.getRating());
+            Comparator<User> ascendingComparator = (a, b) -> b.getRating().compareTo(a.getRating());
+            Collections.sort(kuliList, isAscendSort ? ascendingComparator : descendingComparator);
+
+            dataAdapter.notifyDataSetChanged();
+        });
 
         return view;
     }
 
     private void init(View view){
-        kuli_card = view.findViewById(R.id.kuli_card);
+        kuliCardView = view.findViewById(R.id.kuli_card);
+        sortRatingBtn = view.findViewById(R.id.sort_rating_btn);
     }
+
 }
