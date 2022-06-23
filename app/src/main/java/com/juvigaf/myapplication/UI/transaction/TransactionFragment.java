@@ -3,6 +3,7 @@ package com.juvigaf.myapplication.UI.transaction;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.juvigaf.myapplication.R;
+import com.juvigaf.myapplication.SharedData;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,7 +69,10 @@ public class TransactionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_transaction, container, false);
         init(view);
 
-
+        TransactionAdapter adapter = new TransactionAdapter(SharedData.CURRENT_USER.getOrders(), getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        transactionContainer.setLayoutManager(linearLayoutManager);
+        transactionContainer.setAdapter(adapter);
 
         return view;
     }

@@ -23,6 +23,8 @@ import java.util.List;
 
 public class LandingActivity extends AppCompatActivity {
 
+    int i;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,11 +49,9 @@ public class LandingActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot data : snapshot.getChildren()){
                     //dapat data ada berapa user dalam team kuli
-                    Integer teamCount = data.child("teamCount").getValue(Integer.class);
-                    String teamId = data.child("team_id").getValue(String.class);
-                    Double rating = data.child("rating").getValue(Double.class);
+                    Integer count = data.child("count").getValue(Integer.class);
                     List<User> users = new ArrayList<>();
-                    for(int i = 0; i < teamCount; i++){
+                    for(i = 0; i < count; i++){
                         //ambil data team kuli
                         String username = snapshot.child(String.valueOf(i)).getValue(String.class);
 
@@ -65,6 +65,8 @@ public class LandingActivity extends AppCompatActivity {
                                 String password = snapshot.child("password").getValue(String.class);
                                 User newUser = new User(username, name, email, password, phone, role);
                                 users.add(newUser);
+                                KuliMember newKuliMember = new KuliMember(i, users, count);
+                                teams.add(newKuliMember);
                             }
 
                             @Override
@@ -73,8 +75,6 @@ public class LandingActivity extends AppCompatActivity {
                             }
                         });
                     }
-                    KuliMember newKuliMember = new KuliMember(teamId, users, rating);
-                    teams.put(teamId, newKuliMember);
                 }
             }
 
@@ -100,6 +100,34 @@ public class LandingActivity extends AppCompatActivity {
                         int profile = data.child("profile").getValue(Integer.class);
                         User newUser = new User(username, name, email, password, phone, role);
                         newUser.setProfile(profile);
+
+                        //ambil data rating dan price
+                        DATABASE_REFERENCE.child("rating").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                newUser.setRating(snapshot.getValue(Double.class));
+
+                                //ambil price
+                                DATABASE_REFERENCE.child("price").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        newUser.setPrice(snapshot.getValue(Integer.class));
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                         ALL_KULI.add(newUser);
                     }
                 }

@@ -17,6 +17,8 @@ public class User {
     private List<Order>orders = new ArrayList<>();
     private int profile;
     private Uri uri;
+    private Double rating;
+    private Integer price;
 
     public User(String username, String name, String email, String password, String phone, Integer role) {
         this.name = name;
@@ -98,5 +100,21 @@ public class User {
 
     public void setUri(Uri uri) {
         this.uri = uri;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }
